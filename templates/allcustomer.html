@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+  
+{% block body %}
+<table>
+  <tr>
+    <th>Sr. No.</th>
+    <th>Username</th>
+    <th>Email</th>
+    <th>Gender</th>
+    <th>Account Id</th>
+    <th>Account Balance</th>
+    <th>Make Transaction</th>
+  </tr>
+  {% for user in customers  %}
+  <tr>
+    <td>{{forloop.counter}}</td>
+    <td>{{user.username}}</td>
+    <td>{{user.email}}</td>
+    <td>{{user.gender}}</td>
+    <td>{{user.id}}</td>
+    <td>{{user.amount}}</td>
+    <td><a href={% url 'transfer' user.username %}>transfer</a></td>
+  </tr>
+  {% endfor %}
+</table>
+{% endblock body %}

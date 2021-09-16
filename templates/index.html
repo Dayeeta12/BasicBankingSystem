@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+    <{% block body %}
+        <div class='container'>
+            <div id='text'>
+                <h1>Banking System Project</h1>
+                <div class='button'>
+                    <div>
+                        <img class='img1' src="{%static 'css/images/pngegg.png' %}"><br>
+                        <button class='btn1' onclick="window.location.href='{% url 'newuser' %}';">ADD CUSTOMER</button>
+                    </div>
+                    <div>
+                        <img src="{%static 'css/images/customer.png' %}"><br>
+                        <button onclick="window.location.href='{% url 'customer' %}';">VIEW ALL CUSTOMERS</button>
+                    </div>
+                    <div>
+                        <img class='img' src="{%static 'css/images/history.png' %}"><br>
+                        <button class='btn' onclick="window.location.href='{% url 'history' %}';">TRANSACTIONS HISTORY</button>
+                    </div>
+                    <div>
+                        <img src="{%static 'css/images/make-payment.png' %}"><br>
+                        <button onclick="window.location.href='{% url 'transactions' %}';">MAKE TRANSACTION</button>
+                    </div>
+                   
+                </div>
+            </div>
+
+        </div>
+    
+    {% endblock body %}
+
+
+

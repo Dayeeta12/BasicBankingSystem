@@ -1,0 +1,70 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <meta name="HandheldFriendly" content="true">
+        <link rel="stylesheet" href="{%static 'css/index.css' %}">
+        <link rel="stylesheet" href="{%static 'css/history.css' %}">
+        <link rel="stylesheet" href="{%static 'css/newuser.css' %}">
+        <link rel="stylesheet" href="{%static 'css/trans.css' %}">
+    </head>
+    <body>
+        <div class='container'>
+        <nav class='navbar'>
+            <img class='logo' src="{%static 'css/images/The-Sparks-Foundation-logo.png' %}" alt="">
+                <div class='menu'>
+                    <ul>
+                        <li><a href="{% url 'index' %}">Home</a></li>
+                        <li><a href="{% url 'history' %}">All Transaction</a></li>
+                        <li><a href="{% url 'customer' %}">Customer Details</a></li>
+                    </ul>
+                </div>
+        </nav>
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="alert">
+                        <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
+                        <strong>{{message}}</strong>
+                    </div>
+                {% endfor %}
+            {% endif %}
+
+    <h1 class='heading'>Transfer Money</h1>
+    <div class='transbox'>
+        
+        <form class='style-box' method='POST' action='/transactions'>
+        {% csrf_token %}
+            <span>To: </span>
+            <select id='TO' name="TO" class='all-inputs'>
+                {% for user in users %}
+                <option value={{user.username}}>{{user.username}}</option>
+                {% endfor %}
+            </select>
+            <br>
+            <span>From: </span>
+            <select id="FROM" name='FROM' class='all-inputs'>
+            {% if info != None %}
+                {% for all in info %}
+                <option value={{all.username}}>{{all.username}}</option>
+                {% endfor %}
+            {% else %}
+                {% for user in users %}
+                <option value={{user.username}}>{{user.username}}</option>
+                {% endfor %}
+            {% endif %}
+            </select>
+            <br>
+            <span>Amount: </span>
+            <input type='number' name='amount' id='amount' class='all-inputs'><br>
+            <button type='submit' value='Transfer' class='transfer'>Transfer</button>
+        </form>
+        {% block body %}{% endblock body %}
+    </div> 
+        
+</div>
+</body>
+
+</html>

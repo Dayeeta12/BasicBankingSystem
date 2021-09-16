@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+  
+{% block body %}
+<table>
+  <tr>
+    <th>Sr. No.</th>
+    <th>Debit From</th>
+    <th>Customer ID</th>
+    <th>Credit To</th>
+    <th>Customer ID</th>
+    <th>Total Amount</th>
+    <th>Date Time</th>
+  </tr>
+  {% for hist in all_hist  %}
+  <tr>
+    <td>{{forloop.counter}}</td>
+    <td>{{hist.sender}}</td>
+    <td>{{hist.sender_id}}</td>
+    <td>{{hist.reciever}}</td>
+    <td>{{hist.reciever_id}}</td>
+    <td>{{hist.amount}}</td>
+    <td>{{hist.date}}</td>
+  </tr>
+  {% endfor %}
+  </tr> 
+</table>
+{% endblock body %}
+
