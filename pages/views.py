@@ -60,7 +60,7 @@ def transactions(request):
            
         
         if (int(debit.amount) <= int(send_amount)) or (sender == reciever):
-            messages.warning(request, "Insufficient Balance in Account! OR You Haven't choose correct bank account.")
+            messages.warning(request, "Insufficient Balance in Account! OR You Didn't choose The Correct Bank Account.")
             return render(request, 'transaction.html', {'users': users})
         else:
             debit.amount = int(debit.amount) - int(send_amount)
