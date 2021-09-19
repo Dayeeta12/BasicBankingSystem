@@ -20,7 +20,7 @@ def newuser(request):
             messages.info(request, 'Email already exists')
             return redirect('newuser')
         else:
-            newuser = Customers(username=username, email=email, gender=gender, amount=amount, date=datetime.now())
+            newuser = Customers(username=username, email=email, gender=gender, amount=amount, date=datetime.now().time())
             newuser.save()
             messages.success(request, 'You have successfully added as our customer!')
             return redirect('newuser')
@@ -55,7 +55,7 @@ def transactions(request):
         reciever_id = str(credit.id)
 
         if sender != reciever and int(debit.amount) > int(send_amount):
-            trans_history = Trans_hist(sender=sender, sender_id=sender_id, reciever=reciever,  reciever_id=reciever_id, amount=send_amount, date=datetime.now())
+            trans_history = Trans_hist(sender=sender, sender_id=sender_id, reciever=reciever,  reciever_id=reciever_id, amount=send_amount, date=datetime.now().time())
             trans_history.save()
            
         
